@@ -52,21 +52,25 @@ def validate_raw_data(rides: pd.DataFrame, year: int, month: int) -> pd.DataFram
 
 
 def load_raw_data(year: int, month_lst: Optional[List[int]] = None) -> pd.DataFrame:
-    """download data for each month of the year and then concatenate them into a single DataFrame
+    """Loads raw data from local storage or downloads it from the NYC website, and
+    then loads it into a Pandas DataFrame
+    
     Args:
         year (int): given year
         month (Optional[List[int]], optional): given month to download data. Defaults to None.
     Returns:
-        pd.DataFrame: _description_
+        pd.DataFrame: DataFrame with the following columns:
+            - pickup_datetime: datetime of the pickup
+            - pickup_location_id: ID of the pickup location
     """
     
     rides = pd.DataFrame()
     
     if month_lst is None:
-        # download data only for the months specified in the "month" argument
+        # download data for the entire year (all months)
         month_lst = list(range(1, 13))
     elif isinstance(month_lst, int):
-        #download data for the entire year (all months)
+        # download data only for the months specified in the int "month_lst" argument
         month_lst = [month_lst]
     
     # download data for the specified months
@@ -80,6 +84,7 @@ def load_raw_data(year: int, month_lst: Optional[List[int]] = None) -> pd.DataFr
                 download_one_file_of_raw_data(year, month)
             except:
                 print(f"{year}-{month:02d} file is not available")
+                continue
         else:
             print(f"File for {year}-{month:02d} already exists in local directory")
             
@@ -88,8 +93,10 @@ def load_raw_data(year: int, month_lst: Optional[List[int]] = None) -> pd.DataFr
         
         # rename the columns to be consistent across months
         rides_one_month = rides_one_month[["tpep_pickup_datetime", "PULocationID"]]
-        rides_one_month.rename(columns={"tpep_pickup_datetime": "pickup_datetime", 
-                                              "PULocationID": "pickup_location_id"}, inplace=True)
+        rides_one_month.rename(columns={
+            "tpep_pickup_datetime": "pickup_datetime", 
+            "PULocationID": "pickup_location_id"
+        }, inplace = True)
         
         # validate the file
         rides_one_month = validate_raw_data(rides_one_month, year, month)
@@ -97,15 +104,25 @@ def load_raw_data(year: int, month_lst: Optional[List[int]] = None) -> pd.DataFr
         # append to existing DataFrame
         rides = pd.concat([rides, rides_one_month])
     
-    # keep only time and origin of the ride
-    rides = rides[["pickup_datetime", "pickup_location_id"]]
-    
-    return rides
+    if rides.empty:
+        # no data, so we return an empty dataframe
+        return pd.DataFrame()
+    else:
+        # keep only time and origin of the ride
+        rides = rides[['pickup_datetime', 'pickup_location_id']]
+        return rides
 
 
 
 def add_missing_slots(rides: pd.DataFrame) -> pd.DataFrame:
-    location_ids = rides["pickup_location_id"].unique()
+    """
+    Add necessary rows to the input 'rides' to make sure the output
+    has a complete list of
+    - pickup_hours
+    - pickup_location_ids
+    """
+    # location_ids = rides["pickup_location_id"].unique()
+    location_ids = range(1, rides['pickup_location_id'].max() + 1)
     full_range = pd.date_range(rides["pickup_hour"].min(), rides["pickup_hour"].max(), freq="H")
     
     output = pd.DataFrame()
