@@ -1,0 +1,31 @@
+name: hourly-taxi-deman-feature-pipeline
+
+# how frequently to run the pipeline (every 1 hr)
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+# steps to execute the feature pipeline
+
+job:
+  feature_pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      
+      - name: Install pip
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: execute python workflows from bash script
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: |
+          python feature_pipeline.p3
