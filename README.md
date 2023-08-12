@@ -1,4 +1,4 @@
-## Taxi demand predictor service 🚕
+## Taxi Demand Predictor Service 🚕
 
 This repo is aimed at making it **easy to start playing and learning** about **MLOps**. 
 
