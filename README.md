@@ -115,14 +115,18 @@ Your job is to help the operations team **keep the fleet as busy as possible**.
 
 
 **Serverless MLOps tools**
-- Hopsworks as our feature store
-- Github ACtions to schedule and run jobs
+
+- **Hopsworks** as our feature store
+
+- **Github ACtions** to schedule and run jobs
+
 
 **Feature Store**
 
 <p align="left">
-<img src="data/readme_pics/featurestore.PNG"/>
+<img src="data/readme_pics/featurestore1.PNG"/>
 </p>
 
 
 ## Live Demo
+ - work in progress
