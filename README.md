@@ -32,9 +32,9 @@
 
 ## Problem Statement
 
-You work as a data scientist 👨‍🔬👩‍🔬 in a ride-sharing app company 🚗 (e.g. Uber)
+- You work as a data scientist 👨‍🔬👩‍🔬 in a ride-sharing app company 🚗 (e.g. Uber)
 
-Your job is to help the operations team **keep the fleet as busy as possible**.
+- Your job is to help the operations team **keep the fleet as busy as possible**.
 
 ### Supply 🚕 and demand 👨‍💼
 
