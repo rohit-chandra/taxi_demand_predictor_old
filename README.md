@@ -1,8 +1,8 @@
 ## Taxi Demand Predictor Service 🚕
 
-This repo is aimed at making it **easy to start playing and learning** about **MLOps**. 
+- This repo is aimed at making it **easy to start playing and learning** about **MLOps**. 
 
-My interest in creating this project was ignited after reading UBER's blog post on (:link: [Demand and ETR Forecasting at Airports](https://www.uber.com/en-GB/blog/demand-and-etr-forecasting-at-airports/))
+- My interest in creating this project was ignited after reading UBER's blog post on (:link: [Demand and ETR Forecasting at Airports](https://www.uber.com/en-GB/blog/demand-and-etr-forecasting-at-airports/))
 
 ## Table of Contents 📑
   * [Quick Setup](#quick-setup)
@@ -59,11 +59,13 @@ Your job is to help the operations team **keep the fleet as busy as possible**.
 <img src="readme_pics/step1.PNG"/>
 </p>
 
+
 **Step 2 - Raw data into time-series data**
 
 <p align="left">
 <img src="readme_pics/step2.PNG"/>
 </p>
+
 
 **Step 3 - Time-series data into (features, target) data**
 
