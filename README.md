@@ -124,7 +124,7 @@ Your job is to help the operations team **keep the fleet as busy as possible**.
 **Feature Store**
 
 <p align="left">
-<img src="data/readme_pics/featurestore1.PNG"/>
+<img src="readme_pics/featurestore1.PNG"/>
 </p>
 
 
