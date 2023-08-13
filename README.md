@@ -148,9 +148,9 @@ poetry run jupyter nbconvert -to notebook -- execute notebooks/12_feature_pipeli
 - Feature store is used to store features.
 - These features can be used to either train the models or make predictions.
 - Features saved in the feature store are:
-   - pickup_hour
-   - no_of_rides
-   - pickup_location_id
+   - `pickup_hour`
+   - `no_of_rides`
+   - `pickup_location_id`
      
 <p align="left">
 <img src="readme_pics/featurestore1.PNG"/>
